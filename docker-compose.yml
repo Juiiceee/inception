@@ -1,6 +1,8 @@
+version: "3.3"
+
 services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
     ports:
-      - "4859:4859"
+      - "80:80"
