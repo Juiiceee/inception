@@ -1,13 +1,13 @@
 all:
 	@mkdir -p $(HOME)/data/wordpress
 	@mkdir -p $(HOME)/data/mariadb
-	@docker-compose -f ./srcs/docker-compose.yml up
+	@docker-compose -f ./srcs/docker-compose.yaml up
 
 down:
-	@docker-compose -f ./srcs/docker-compose.yml down
+	@docker-compose -f ./srcs/docker-compose.yaml down
 
 re:
-	@docker-compose -f srcs/docker-compose.yml up --build
+	@docker-compose -f srcs/docker-compose.yaml up --build
 
 clean:
 	@docker stop $$(docker ps -qa);\

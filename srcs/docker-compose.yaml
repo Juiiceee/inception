@@ -1,24 +1,24 @@
 version: "3.5"
 
 networks:
-  app-network:
-    name: app-network
+  inception:
+    name: inception
     driver: bridge
 
 volumes:
-  wp:
+  wordpress:
     driver: local
-    name: wp
+    name: wordpress
     driver_opts:
-      type: none
-      o: bind
+      type: 'none'
+      o: 'bind'
       device: /$HOME/data/wordpress
-  db:
+  mariadb:
     driver: local
-    name: db
+    name: mariadb
     driver_opts:
-      type: none
-      o: bind
+      type: 'none'
+      o: 'bind'
       device: /$HOME/data/mariadb
 
 services:
@@ -28,9 +28,9 @@ services:
     env_file:
       - .env
     volumes:
-      - db:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     networks:
-      - app-network
+      - inception
     restart: unless-stopped
 
   wordpress:
@@ -41,9 +41,9 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wp:/var/www/html
+      - wordpress:/var/www/html
     networks:
-      - app-network
+      - inception
     restart: unless-stopped
 
   nginx:
@@ -54,7 +54,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wp:/var/www/html
+      - wordpress:/var/www/html
     networks:
-      - app-network
+      - inception
     restart: unless-stopped

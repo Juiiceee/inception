@@ -1,5 +1,7 @@
 FROM debian:buster
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
 
 EXPOSE 9000
