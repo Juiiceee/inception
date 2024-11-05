@@ -1,6 +1,6 @@
 all:
-	@mkdir -p $(HOME)/data/wordpress
-	@mkdir -p $(HOME)/data/mariadb
+	@mkdir -p /home/lbehr/data/wordpress
+	@mkdir -p /home/lbehr/data/mariadb
 	@docker-compose -f ./srcs/docker-compose.yaml up
 
 down:
@@ -15,7 +15,7 @@ clean:
 	docker rmi -f $$(docker images -qa);\
 	docker volume rm $$(docker volume ls -q);\
 	docker network rm $$(docker network ls -q);\
-	rm -rf $(HOME)/data/wordpress
-	rm -rf $(HOME)/data/mariadb
+	rm -rf /home/lbehr/data/wordpress
+	rm -rf /home/lbehr/data/mariadb
 
 .PHONY: all re down clean
