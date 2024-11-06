@@ -9,6 +9,6 @@ EXPOSE 3306
 COPY ./conf/server.cnf /etc/mysql/mariadb.conf.d/
 COPY ./tools /var/www/
 
-RUN service mysql start && mysql < /var/www/db.sql && rm -f /var/www/db.sql;
+RUN chmod +x /var/www/createBDD.sh
 
-CMD ["mysqld"]
+ENTRYPOINT ["/var/www/createBDD.sh"]
